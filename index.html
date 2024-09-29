@@ -3,10 +3,9 @@
   <head>
     <link rel="icon" type="image/png" href="logo.jpg">
     <style>
-      :root 
-      {
+      :root {
         touch-action: none; 
-        height: 160vh;
+        height: 100vh;
         background: -moz-linear-gradient(top,  #11e8bb 0%, #8200c9 80%); 
         background: -webkit-linear-gradient(top,  #11e8bb 0%,#8200c9 80%);
         background: linear-gradient(to bottom,  #11e8bb 0%,#8200c9 80%);
@@ -15,268 +14,167 @@
       {
         display: grid;
       }
-          #scrollArea
-          {
-            display: grid;
-            position: absolute;
-            margin-top: 35vh;
-            margin-left: 20vw;
-          }
-        img
-        {
-          border-radius: 1vh;
-        }
-        body {
-          margin: 0px;
-          overflow: hidden;
-          touch-action: none; 
-          display: grid;
-          -webkit-transform-style: preserve-3d;
-                  transform-style: preserve-3d;
-        }
-
-        #drag-container, #spin-container {
-          margin-top: 30vh;
-          position: absolute;
-          display: grid;
-          margin: 0px;
-          -webkit-transform-style: preserve-3d;
-                  transform-style: preserve-3d;
-          -webkit-transform: rotateX(-10deg);
-                  transform: rotateX(-10deg);
-        }
-
-        #drag-container img {
-          -webkit-transform-style: preserve-3d;
-                  transform-style: preserve-3d;
-          position: absolute;
+         
+      body {
+        position: absolute;
+        top: 0;
+        margin: 0px;
+        height: 100vh;
+        overflow: hidden;
+        touch-action: none; 
+        display: grid;
+        -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+      }
+      
+      .loader {
+        width: 100vw;
+        height: 100vh;
+          /* background: #000; */
+          /* background: radial-gradient(#222, #000); */
+          bottom: 0;
           left: 0;
+          overflow: hidden;
+          position: fixed;
+          right: 0;
           top: 0;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          -webkit-box-shadow: 0 0 8px #fff;
-                  box-shadow: 0 0 8px #fff;
-          -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
-        }
+          z-index: 99999;
+          background: -moz-linear-gradient(top,  #11e8bb 0%, #8200c9 80%); 
+          background: -webkit-linear-gradient(top,  #11e8bb 0%,#8200c9 80%);
+          background: linear-gradient(to bottom,  #11e8bb 0%,#8200c9 80%);
+      }
 
-        #drag-container img:hover{
+      .loader-inner {
+          bottom: 0;
+          height: 60px;
+          left: 0;
+          margin: auto;
           position: absolute;
-          -webkit-box-shadow: 0 0 35px #fffd;
-                  box-shadow: 0 0 35px #fffd;
-          -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
-        }
+          right: 0;
+          top: 0;
+          width: 100px;
+      }
 
-        #drag-container p {
-          width: 30vw;
-          font-weight: bold;
+      .loader-line-wrap {
+          animation: 
+          spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
+        ;
+          box-sizing: border-box;
+          height: 50px;
+          left: 0;
+          overflow: hidden;
           position: absolute;
-          top: 100%;
-          left: 50%;
-          -webkit-transform: translate(-50%,-50%) rotateX(90deg);
-                  transform: translate(-50%,-50%) rotateX(90deg);
-          color: #fff;
-          user-select: none;
-          -webkit-touch-callout: none;
-          -webkit-user-select: none;
-          -khtml-user-select: none; 
-          -moz-user-select: none;
-          -ms-user-select: none;
-        }
-
-        #ground {
-          position: relative;
-          top: 100%;
-          left: 50%;
-          -webkit-transform: translate(-50%,-50%) rotateX(90deg);
-                  transform: translate(-50%,-50%) rotateX(90deg);
-        }
-
-        @-webkit-keyframes spin {
-          from{
-            -webkit-transform: rotateY(0deg);
-                    transform: rotateY(0deg);
-          } to{
-            -webkit-transform: rotateY(360deg);
-                    transform: rotateY(360deg);
-          }
-        }
-
-        @keyframes spin {
-          from{
-            -webkit-transform: rotateY(0deg);
-                    transform: rotateY(0deg);
-          } to{
-            -webkit-transform: rotateY(360deg);
-                    transform: rotateY(360deg);
-          }
-        }
-        @-webkit-keyframes spinRevert {
-          from{
-            -webkit-transform: rotateY(360deg);
-                    transform: rotateY(360deg);
-          } to{
-            -webkit-transform: rotateY(0deg);
-                    transform: rotateY(0deg);
-          }
-        }
-        @keyframes spinRevert {
-          from{
-            -webkit-transform: rotateY(360deg);
-                    transform: rotateY(360deg);
-          } to{
-            -webkit-transform: rotateY(0deg);
-                    transform: rotateY(0deg);
-          }
-        } 
-        #pageCloseUp
-        {
+          top: 0;
+          transform-origin: 50% 100%;
+          width: 100px;
+      }
+      .loader-line {
+          border: 4px solid transparent;
+          border-radius: 100%;
+          box-sizing: border-box;
+          height: 100px;
+          left: 0;
+          margin: 0 auto;
           position: absolute;
-          display: grid;
-          place-items: center;
-          width: 100vw;
-          height: 100vh;
-        }
-        #closeUp
-        {
-          position: absolute;
-          display: grid;
-          height: 80vh;
-        }
-        #twitterIcon
-        {
-          position: absolute;
-          height: 7vh;
-          margin-left: 46vw;
-        }
-        @media (max-aspect-ratio: 8/10)
-        {
-          #closeUp
-          {
-            position: absolute;
-            display: grid;
-            width: 85vw;
-          }
-        }
-        
-        #exitPageCloseUp
-        {
-          position: absolute;
-          border: none;
-          font-size: 5vh;
-          padding: 2%;
-          border-radius: 1vh;
-          background-color: rgba(50,50,255,0.1);
-          color: rgba(255,255,255,0.8);
-          z-index: 100;
-          user-select: none;
-          -webkit-touch-callout: none;
-          -webkit-user-select: none;
-          -khtml-user-select: none; 
-          -moz-user-select: none;
-          -ms-user-select: none;
-        }
-        #exitPageCloseUp:hover
-        {
-          background-color: rgba(100,100,255,0.2);
-        }
-        .loader {
-          width: 100vw;
-          height: 100vh;
-            /* background: #000; */
-            /* background: radial-gradient(#222, #000); */
-            bottom: 0;
-            left: 0;
-            overflow: hidden;
-            position: fixed;
-            right: 0;
-            top: 0;
-            z-index: 99999;
-            background: -moz-linear-gradient(top,  #11e8bb 0%, #8200c9 80%); 
-            background: -webkit-linear-gradient(top,  #11e8bb 0%,#8200c9 80%);
-            background: linear-gradient(to bottom,  #11e8bb 0%,#8200c9 80%);
-        }
+          right: 0;
+          top: 0;
+          width: 100px;
+      }
+      .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+      .loader-line-wrap:nth-child(2) { animation-delay: -100ms; }
+      .loader-line-wrap:nth-child(3) { animation-delay: -150ms; }
+      .loader-line-wrap:nth-child(4) { animation-delay: -200ms; }
+      .loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
 
-        .loader-inner {
-            bottom: 0;
-            height: 60px;
-            left: 0;
-            margin: auto;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100px;
+      .loader-line-wrap:nth-child(1) .loader-line {
+          border-color: hsl(300, 80%, 60%);
+          height: 90px;
+          width: 90px;
+          top: 7px;
+      }
+      .loader-line-wrap:nth-child(2) .loader-line {
+          border-color: hsl(175, 80%, 60%);
+          height: 76px;
+          width: 76px;
+          top: 14px;
+      }
+      .loader-line-wrap:nth-child(3) .loader-line {
+          border-color: hsl(234, 80%, 60%);
+          height: 62px;
+          width: 62px;
+          top: 21px;
+      }
+      .loader-line-wrap:nth-child(4) .loader-line {
+          border-color: hsl(318, 91%, 49%);
+          height: 48px;
+          width: 48px;
+          top: 28px;
+      }
+      .loader-line-wrap:nth-child(5) .loader-line {
+          border-color: hsl(185, 100%, 79%);
+          height: 34px;
+          width: 34px;
+          top: 35px;
+      }
+      @keyframes spin {
+          0%, 15% {
+          transform: rotate(0);
         }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .slider {
+        width: 100vw;
+        text-align: center;
+        overflow: hidden;
+        position: absolute;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        height: 100vh;
+      }
 
-        .loader-line-wrap {
-            animation: 
-            spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
-          ;
-            box-sizing: border-box;
-            height: 50px;
-            left: 0;
-            overflow: hidden;
-            position: absolute;
-            top: 0;
-            transform-origin: 50% 100%;
-            width: 100px;
-        }
-        .loader-line {
-            border: 4px solid transparent;
-            border-radius: 100%;
-            box-sizing: border-box;
-            height: 100px;
-            left: 0;
-            margin: 0 auto;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100px;
-        }
-        .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
-        .loader-line-wrap:nth-child(2) { animation-delay: -100ms; }
-        .loader-line-wrap:nth-child(3) { animation-delay: -150ms; }
-        .loader-line-wrap:nth-child(4) { animation-delay: -200ms; }
-        .loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
+      .slide-buttons{
+        display: grid;
+        grid-template-columns: repeat(11,1fr);
+      }
 
-        .loader-line-wrap:nth-child(1) .loader-line {
-            border-color: hsl(300, 80%, 60%);
-            height: 90px;
-            width: 90px;
-            top: 7px;
-        }
-        .loader-line-wrap:nth-child(2) .loader-line {
-            border-color: hsl(175, 80%, 60%);
-            height: 76px;
-            width: 76px;
-            top: 14px;
-        }
-        .loader-line-wrap:nth-child(3) .loader-line {
-            border-color: hsl(234, 80%, 60%);
-            height: 62px;
-            width: 62px;
-            top: 21px;
-        }
-        .loader-line-wrap:nth-child(4) .loader-line {
-            border-color: hsl(318, 91%, 49%);
-            height: 48px;
-            width: 48px;
-            top: 28px;
-        }
-        .loader-line-wrap:nth-child(5) .loader-line {
-            border-color: hsl(185, 100%, 79%);
-            height: 34px;
-            width: 34px;
-            top: 35px;
-        }
-        @keyframes spin {
-            0%, 15% {
-            transform: rotate(0);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
+      .slides {
+        width: 100vw;
+        display: grid;
+        place-items: center;
+        grid-gap: 1vmax;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .slides > div {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        width: 30vmax;
+        height: 40vmax;
+        border-radius: 10px;
+        background: #eee;
+        transform-origin: center center;
+        transform: scale(1);
+        transition: transform 0.5s;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 100px;
+      }
     </style>
   </head>
   <body>
@@ -299,34 +197,58 @@
         </div>
       </div>
     </div>
-    <div style="display:none;" id="exitPageCloseUp">X</div>
-    <div style="display:none;" id="pageCloseUp">
-      <img id="closeUp">
-    </div>
-    <div style="display:none;" id="scrollArea">
-      <div id="drag-container">
-        <div id="spin-container">
-          <img src="./cover.png" alt="">
-          <img src="./copyright.png" alt="">
-          <img src="./summary.png" alt="">
-          <img src="./content.png" alt="">
-          <img src="./page1.png" alt="">
-          <img src="./page2.png" alt="">
-          <img src="./page3.png" alt="">
-          <img src="./page4.png" alt="">
-          <img src="./page5.png" alt="">
-          <img src="./page6.png" alt="">
-          <img src="./page7.png" alt="">
-          <img src="./page8.png" alt="">
-          <img src="./page9.png" alt="">
-          <img src="./page10.png" alt="">
-          <img src="./page11.png" alt="">
-          <p id="instructions" style="visibility:hidden; font-size: 5rem;">click on the pages for a close up</p>
+    <div class="slider">
+      <!-- <div class="slide-buttons">
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a>
+        <a href="#slide-6">6</a>
+        <a href="#slide-7">7</a>
+        <a href="#slide-8">8</a>
+        <a href="#slide-9">9</a>
+        <a href="#slide-10">10</a>
+        <a href="#slide-11">11</a>
+      </div> -->
+    
+      <div class="slides">
+        <div id="slide-1">
+          <img src="page1.png" alt="page 1" width="100%" height="100%">
         </div>
-        <div id="ground"></div>
+        <div id="slide-2">
+          <img src="page2.png" alt="page 2" width="100%" height="100%">
+        </div>
+        <div id="slide-3">
+          <img src="page3.png" alt="page 3" width="100%" height="100%">
+        </div>
+        <div id="slide-4">
+          <img src="page4.png" alt="page 4" width="100%" height="100%">
+        </div>
+        <div id="slide-5">
+          <img src="page5.png" alt="page 5" width="100%" height="100%">
+        </div>
+        <div id="slide-6">
+          <img src="page6.png" alt="page 6" width="100%" height="100%">
+        </div>
+        <div id="slide-7">
+          <img src="page7.png" alt="page 7" width="100%" height="100%">
+        </div>
+        <div id="slide-8">
+          <img src="page8.png" alt="page 8" width="100%" height="100%">
+        </div>
+        <div id="slide-9">
+          <img src="page9.png" alt="page 9" width="100%" height="100%">
+        </div>
+        <div id="slide-10">
+          <img src="page10.png" alt="page 10" width="100%" height="100%">
+        </div>
+        <div id="slide-11">
+          <img src="page11.png" alt="page 11" width="100%" height="100%">
+        </div>
       </div>
     </div>
-    <div style="display:none;" id="canvas"></div>
+    <div id="canvas"></div>
     <script type="module" src="./three.modules.js"></script>
 		<script type="module">
 			'use strict';
@@ -334,73 +256,63 @@
       import { AmbientLight, Color, DirectionalLight, DoubleSide, IcosahedronGeometry, LoadingManager, Mesh, MeshPhongMaterial, MeshStandardMaterial, Object3D, PerspectiveCamera, PlaneGeometry, Raycaster, RepeatWrapping, Scene, SphereBufferGeometry, TetrahedronGeometry, TextureLoader, Vector2, Vector3, WebGLRenderer } from "./three.modules.js";
 			let renderer, scene, camera, composer, particle;
 
-      window.addEventListener("load", function() 
-      {
+      window.addEventListener("load", function() {
         document.querySelector(".loader").style.display = "none";
-        document.querySelector("#instructions").style.visibility= "visible";
-        document.querySelector("#scrollArea").style.display= "grid";
-        document.querySelector("#canvas").style.display= "grid";
+        // document.querySelector("#canvas").style.display= "grid";
         init();
         animate();
-        setTimeout(init2, 100);
       });
 
-      function init() 
-    {
-      renderer = new WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      // renderer.autoClear = false;
-      // renderer.setClearColor(0x000000, 0.0);
-      renderer.domElement.style.display = "grid";
-      // console.log(renderer.domElement.style.height);
-      // document.body.appendChild(renderer.domElement);
-      document.getElementById('canvas').appendChild(renderer.domElement);
-      
-      scene = new Scene();
+      function init() {
+        renderer = new WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.domElement.style.display = "grid";
+        document.getElementById('canvas').appendChild(renderer.domElement);
+        
+        scene = new Scene();
 
-      camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-      camera.position.z = 400;
-      scene.add(camera);
+        camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.z = 400;
+        scene.add(camera);
 
-      particle = new Object3D();
+        particle = new Object3D();
 
-      var geometry = new TetrahedronGeometry(2, 0);
-      var geom = new IcosahedronGeometry(7, 1);
-      var geom2 = new IcosahedronGeometry(15, 1);
+        var geometry = new TetrahedronGeometry(2, 0);
+        var geom = new IcosahedronGeometry(7, 1);
+        var geom2 = new IcosahedronGeometry(15, 1);
 
-      var material = new MeshPhongMaterial({
-        color: 0xffffff,
-        flatShading: true
-      });
+        var material = new MeshPhongMaterial({
+          color: 0xffffff,
+          flatShading: true
+        });
 
-      for (var i = 0; i < 1000; i++) {
-        var mesh = new Mesh(geometry, material);
-        mesh.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
-        mesh.position.multiplyScalar(90 + (Math.random() * 700));
-        mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
-        particle.add(mesh);
+        for (var i = 0; i < 1000; i++) {
+          var mesh = new Mesh(geometry, material);
+          mesh.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+          mesh.position.multiplyScalar(90 + (Math.random() * 700));
+          mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
+          particle.add(mesh);
+        }
+
+        scene.add(particle);
+
+        var ambientLight = new AmbientLight(0x999999 );
+        scene.add(ambientLight);
+        
+        var lights = [];
+        lights[0] = new DirectionalLight( 0xffffff, 1 );
+        lights[0].position.set( 1, 0, 0 );
+        lights[1] = new DirectionalLight( 0x11E8BB, 1 );
+        lights[1].position.set( 0.75, 1, 0.5 );
+        lights[2] = new DirectionalLight( 0x8200C9, 1 );
+        lights[2].position.set( -0.75, -1, 0.5 );
+        scene.add( lights[0] );
+        scene.add( lights[1] );
+        scene.add( lights[2] );
+    
+        window.addEventListener('resize', onWindowResize, false);
       }
-
-      scene.add(particle);
-
-      var ambientLight = new AmbientLight(0x999999 );
-      scene.add(ambientLight);
-      
-      var lights = [];
-      lights[0] = new DirectionalLight( 0xffffff, 1 );
-      lights[0].position.set( 1, 0, 0 );
-      lights[1] = new DirectionalLight( 0x11E8BB, 1 );
-      lights[1].position.set( 0.75, 1, 0.5 );
-      lights[2] = new DirectionalLight( 0x8200C9, 1 );
-      lights[2].position.set( -0.75, -1, 0.5 );
-      scene.add( lights[0] );
-      scene.add( lights[1] );
-      scene.add( lights[2] );
-  
-      window.addEventListener('resize', onWindowResize, false);
-
-    };
 
       function animate() {
         requestAnimationFrame(animate);
@@ -410,172 +322,13 @@
         renderer.clear();
 
         renderer.render( scene, camera )
-      };
-     // You can change global variables here:
-        var radius = 500; // how big of the radius
-        var imgWidth = 0;
-        var imgHeight = 0;
+      }
 
-        if((window.innerWidth / window.innerHeight) < 0.8)
-        {
-          imgWidth = 28;
-          imgHeight = 20;
-          radius = 650;
-        }else
-        {
-          imgWidth = 12; 
-          imgHeight = 22.5;
-          radius = 500;
-        }
-
-        var odrag = document.getElementById('drag-container');
-        var ospin = document.getElementById('spin-container');
-        var aImg = ospin.getElementsByTagName('img');
-        var hide = true;
-        var pageCloseUp = document.getElementById('pageCloseUp');
-        var closeUp = document.getElementById('closeUp');
-        var exitPageCloseUp = document.getElementById("exitPageCloseUp");
-        for(var i = 0; i < aImg.length ; i++)
-        {
-          aImg.item(i).addEventListener("click",function()
-          {
-            odrag.style.display = "none";
-            exitPageCloseUp.style.display = "grid";
-            pageCloseUp.style.display = "grid";
-            closeUp.setAttribute("src",this.src);
-          });
-        }
-        exitPageCloseUp.addEventListener("click",function()
-        {
-          pageCloseUp.style.display = "none";
-          exitPageCloseUp.style.display = "none";
-          odrag.style.display = "grid";
-        });
-        var aEle = [...aImg]; // combine 2 arrays
-
-        // Size of images
-        ospin.style.width = imgWidth + "vw";
-        ospin.style.height = imgHeight + "vh";
-
-        function dynamicVisuals()
-        {
-          if((window.innerWidth / window.innerHeight) < 0.8)
-          {
-            imgWidth = 25;
-            imgHeight = 20;
-            radius = 650;
-            ospin.style.width = imgWidth + "vw";
-            ospin.style.height = imgHeight + "vh";
-          }else
-          {
-            imgWidth = 10; 
-            imgHeight = 22.5;
-            ospin.style.width = imgWidth + "vw";
-            ospin.style.height = imgHeight + "vh";
-          }
-        }
-
-        function onWindowResize() 
-        {
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          camera.aspect = window.innerWidth / window.innerHeight;
-          camera.updateProjectionMatrix();
-          dynamicVisuals();
-        }
-        // Size of ground - depend on radius
-        var ground = document.getElementById('ground');
-        ground.style.width = 100 + "vw";
-        ground.style.height = 100 + "vh";
-
-        function init2(delayTime) 
-        {
-          for (var i = 0; i < aEle.length; i++) 
-          {
-            aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius/10 + "rem)";
-            aEle[i].style.transition = "transform 2s";
-            aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
-          }
-        }
-
-        var sX, sY, nX, nY, desX = 0,
-            desY = 0,
-            tX = 0,
-            tY = 10;
-        var rotateSpeed = -150;
-        var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
-        ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
-        var paragraph = document.getElementsByTagName("p");
-        console.log(paragraph);
-        function applyTranform(obj) {
-          // Constrain the angle of camera (between 0 and 180)
-          if(tY > 45) 
-          {
-            tY = 45;
-          }
-          if(tY < -45)
-          {
-            tY = -45;
-          } 
-          // Apply the angle
-          obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
-        }
-
-        function playSpin(yes) {
-          ospin.style.animationPlayState = (yes?'running':'paused');
-        }
-
-        // setup events
-        document.onpointerdown = function (e) 
-        {
-          clearInterval(odrag.timer);
-          e = e || window.event;
-          var sX = e.clientX,
-              sY = e.clientY;
-
-          this.onpointermove = function (e) 
-          {
-            e = e || window.event;
-            var nX = e.clientX,
-                nY = e.clientY;
-            desX = nX - sX;
-            desY = nY - sY;
-            tX += desX * 0.1;
-            tY += desY * 0.1;
-            applyTranform(odrag);
-            sX = nX;
-            sY = nY;
-          };
-
-          this.onpointerup = function (e) 
-          {
-            odrag.timer = setInterval(function () 
-            {
-              desX *= 0.95;
-              desY *= 0.95;
-              tX += desX * 0.1;
-              tY += desY * 0.1;
-              applyTranform(odrag);
-              playSpin(false);
-              if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
-                clearInterval(odrag.timer);
-                playSpin(true);
-              }
-            }, 17);
-            this.onpointermove = this.onpointerup = null;
-          };
-          // console.log(renderer.domElement.style.height);
-          // console.log(document.getElementsByTagName('canvas')[0].attributes);
-          // console.log(document.getElementsByTagName('body')[0].childNodes[9].attributes);
-          return false;
-        };
-
-        document.onmousewheel = function(e) 
-        {
-          e = e || window.event;
-          var d = e.wheelDelta / 20 || -e.detail;
-          radius += d;
-          init2(1);
-        };
+      function onWindowResize() {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
     </script>
   </body>
 </html>
